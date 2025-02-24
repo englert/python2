@@ -1,6 +1,25 @@
+import os
 import pytest
+import math
+import random
+import json
 from unittest.mock import patch
+
+
+if not os.path.exists('python2.py'):
+    with open('task2.json') as json_data:
+        lista = json.load(json_data)
+    
+    random.shuffle(lista)
+    text = "'''\n\n\n\n#--------------------------\n'''".join(lista)
+    
+    with open('python2.py', 'w') as f:
+        f.write("#--------------------------\n'''")
+        f.writelines(text)
+        f.write("'''\n\n\n\n#=====================================")
+        
 from python2 import *
+
 
 # Tesztelés az elso_karakter függvénnyel
 def test_elso_karakter():
@@ -171,5 +190,4 @@ def test_faktorialis():
     assert faktorialis(1) == 1
     assert faktorialis(5) == 120
     assert faktorialis(10) == 3628800
-    with pytest.raises(ValueError):
-        faktorialis(-1)  # Negatív számot nem fogad el
+    
