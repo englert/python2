@@ -11,12 +11,12 @@ if not os.path.exists('python2.py'):
         lista = json.load(json_data)
     
     random.shuffle(lista)
-    text = "'''\n\n\n\n#--------------------------\n'''".join(lista)
+    text = '\'\'\'\n\n\n\n#--------------------------\n\'\'\' '.join(lista)
     
     with open('python2.py', 'w') as f:
-        f.write("#--------------------------\n'''")
+        f.write('#--------------------------\n\'\'\'')
         f.writelines(text)
-        f.write("'''\n\n\n\n#=====================================")
+        f.write('\'\'\'\n\n\n\n#=====================================')
         
 from python2 import *
 
@@ -190,4 +190,4 @@ def test_faktorialis():
     assert faktorialis(1) == 1
     assert faktorialis(5) == 120
     assert faktorialis(10) == 3628800
-    
+    assert faktorialis(-1) ==None # Negatív számot nem fogad el
